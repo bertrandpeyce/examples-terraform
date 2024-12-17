@@ -19,6 +19,7 @@ provider "azurerm" {
 resource "azurerm_resource_group" "rg" {
   name     = format("%s-rg",var.prefix_name)
   location = var.location
+  tags = var.project_tags
 }
 
 module "network" {
@@ -29,11 +30,5 @@ module "network" {
   prefix_name         = var.prefix_name
   vnet_address_space = var.vnet_address_space
   subnet_address_prefixes = var.subnet_address_prefixes
-  vnet_tags = {
-    "owner" = "toto@example.com"
-    "environment" = "dev"
-    "project" = "example-000-azurerm-vnet"
-    "repository" = "https://github.com/bertrandpeyce/examples-terraform"
-  }
-    
+  vnet_tags = var.project_tags
 }
