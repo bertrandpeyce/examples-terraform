@@ -5,7 +5,7 @@ resource "azurerm_resource_group" "rg" {
 }
 
 module "network" {
-  source = "../modules/azurerm/network"
+  source = "git::https://github.com/bertrandpeyce/terraform-modules//azurerm/network"
 
   resource_group_name     = azurerm_resource_group.rg.name
   location                = azurerm_resource_group.rg.location
@@ -16,7 +16,7 @@ module "network" {
 }
 
 module "linux_vm_wordpress" {
-  source = "../modules/azurerm/linux_vm_ansible_confd"
+  source = "git::https://github.com/bertrandpeyce/terraform-modules//azurerm/linux_vm_ansible_confd"
 
   resource_group_name       = azurerm_resource_group.rg.name
   location                  = azurerm_resource_group.rg.location
